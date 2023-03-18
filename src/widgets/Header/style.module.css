@@ -1,11 +1,22 @@
 nav {
     display: flex;
     width: 100%;
-    justify-content: center;
+    height: 55px;
+    box-shadow: 0 0 15px -5px black;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 0 25px;
+    font-size: 20px;
 }
 
 nav a {
     margin: 0 10px;
+}
+
+.current {
+    color: var(--text-secondary);
+}
+.project {
+    color: var(--light-piccolo);
+    font-weight: bold;
 }

@@ -1,0 +1,11 @@
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+nav a {
+    margin: 0 10px;
+}

@@ -2,9 +2,9 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
-    /* background: var(--c-background); */
+    background: var(--bg-secondary);
   
     transition: ease .2s;
   }

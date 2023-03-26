@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { AboutPage, ErrorPage, MainPage } from '../pages';
+import { AboutPage, ErrorPage, FormPage, MainPage } from '../pages';
 import React from 'react';
-import { Card } from '../entities/ui';
+import { Card, FormCard } from '../entities/ui';
 import { Input, Button } from '../shared/ui';
 import { Header } from '../widgets';
 import { App } from '../app';
@@ -55,5 +55,23 @@ describe('pages', () => {
   });
   it('renders Error Page', () => {
     render(<ErrorPage />);
+  });
+  it('renders Error Page', () => {
+    render(<FormPage />);
+  });
+});
+
+describe('Form Card', () => {
+  it('renders card', () => {
+    render(
+      <FormCard
+        title="Title"
+        gender={true}
+        author={true}
+        type="2"
+        img="localhost:5173/img"
+        date="Today"
+      />
+    );
   });
 });

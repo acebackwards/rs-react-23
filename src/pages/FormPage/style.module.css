@@ -1,6 +1,14 @@
-.container {
+.formPage {
     display: flex;
     height: calc(100vh - 55px);
+    max-height: calc(100vh - 55px);
+    overflow-y: scroll;
+    align-items: center;
+    flex-direction: column;
+}
+.container {
+    display: flex;
+    margin-top: 10px;
     align-items: center;
     justify-content: center;
 }
@@ -27,6 +35,13 @@ form input {
 
 form label {
     margin-top: 5px;
+}
+
+form span {
+    padding-left: 1%;
+    font-size: 12px;
+    color: var(--red);
+    margin-bottom: 5px;
 }
 
 .author {
@@ -61,4 +76,15 @@ form label {
     border: none;
     cursor: pointer;
     box-shadow: 0 5px 15px -3px var(--light-gray);
+}
+
+.cardContainer {
+    width: 90%;
+    height: max-content;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15%;
+    justify-content: space-between;
+    row-gap: 2.5em;
+    padding-bottom: 50px;
 }

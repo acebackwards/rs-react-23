@@ -49,7 +49,11 @@ export class FormPage extends Component<Record<string, never>> {
   }
 
   validateFile() {
-    return this.fileField.current?.files?.length === 0;
+    return (
+      ((this.fileField.current as HTMLInputElement).files as FileList)[0] &&
+      ((this.fileField.current as HTMLInputElement).files as FileList)[0].type.slice(0, 5) ===
+        'image'
+    );
   }
 
   sendData = (e: React.FormEvent | HTMLFormElement) => {
@@ -60,19 +64,20 @@ export class FormPage extends Component<Record<string, never>> {
     const author = (this.authorField.current as HTMLInputElement).checked;
     const genderMale = (this.genderMaleField.current as HTMLInputElement).checked;
     const genderFemale = (this.genderFemaleField.current as HTMLInputElement).checked;
-    const file = this.fileField.current?.files as FileList;
+    const file = ((this.fileField.current as HTMLInputElement).files as FileList)[0];
+
     if (
       title === '' ||
       date === '' ||
       (genderMale === false && genderFemale === false) ||
-      file.length === 0
+      file.type.slice(0, 5) != 'image'
     ) {
       this.setState(() => {
         return {
           titleIsValid: !this.validateTitle(),
           dateIsValid: !this.validateDate(),
           genderIsValid: !this.validateGender(),
-          fileIsValid: !this.validateFile(),
+          fileIsValid: this.validateFile(),
         };
       });
       return;
@@ -83,7 +88,7 @@ export class FormPage extends Component<Record<string, never>> {
         titleIsValid: this.validateTitle(),
         dateIsValid: this.validateDate(),
         genderIsValid: this.validateGender(),
-        fileIsValid: this.validateFile(),
+        fileIsValid: !this.validateFile(),
       };
     });
 
@@ -93,7 +98,7 @@ export class FormPage extends Component<Record<string, never>> {
       type,
       author,
       gender: genderMale ? true : false,
-      file: window.URL.createObjectURL(file[0]),
+      file: window.URL.createObjectURL(file),
     });
 
     this.setState(() => {

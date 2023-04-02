@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import s from './style.module.css';
 
 type ButtonProps = {
@@ -9,12 +9,10 @@ type ButtonProps = {
 
 type ButtonType = 'button' | 'submit';
 
-export class Button extends Component<ButtonProps> {
-  render() {
-    return (
-      <button type={this.props.type || 'button'} className={s.button + ' ' + this.props.className}>
-        {this.props.title}
-      </button>
-    );
-  }
-}
+export const Button = (props: ButtonProps) => {
+  return (
+    <button type={props.type || 'button'} className={s.button + ' ' + props.className}>
+      {props.title}
+    </button>
+  );
+};

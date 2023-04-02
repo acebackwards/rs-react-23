@@ -1,0 +1,20 @@
+.search {
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+.search button {
+    margin-left: 10px;
+}
+
+.container { 
+    width: 90%;
+    height: max-content;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15%;
+    justify-content: space-between;
+    row-gap: 2.5em;
+    padding-bottom: 50px;
+}

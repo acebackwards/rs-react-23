@@ -11,7 +11,8 @@ interface Props {
 export function SearchBar(props: Props) {
   const [inputValue, setInputValue] = useState('');
 
-  const handleClick = () => {
+  const handleClick = (e: React.FormEvent) => {
+    e.preventDefault();
     props.startSearch(inputValue);
   };
 
@@ -24,12 +25,14 @@ export function SearchBar(props: Props) {
     if (storedData) {
       setInputValue(storedData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     return () => {
       localStorage.setItem(props.storedData, inputValue);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   window.onunload = () => {
@@ -37,11 +40,16 @@ export function SearchBar(props: Props) {
   };
 
   return (
-    <div className={style.search}>
-      <Input placeholder="Search..." defaultValue={inputValue} onChange={inputChange} />
-      <div onClick={handleClick}>
-        <Button title="Search" />
+    <form className={style.search} onSubmit={handleClick}>
+      <Input
+        id="search-input"
+        placeholder="Search..."
+        defaultValue={inputValue}
+        onChange={inputChange}
+      />
+      <div>
+        <Button title="Search" type="submit" />
       </div>
-    </div>
+    </form>
   );
 }

@@ -1,0 +1,86 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.modal__background {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__card {
+  cursor: default;
+  margin: 0 auto;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  min-height: 350px;
+  box-shadow: 0 5px 15px -3px var(--light-gray);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 350px;
+  box-shadow: 0 5px 15px -3px var(--light-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--white);
+}
+
+.card:hover {
+  box-shadow: 0 5px 15px 3px var(--light-gray);
+  transition: 0.5s;
+}
+
+.card__name {
+  text-align: center;
+}
+
+.description-container {
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 10px;
+}
+
+.image-container {
+  width: 100%;
+}
+.image-container img {
+  width: 100%;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.description {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.status {
+  padding: 0 6px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px -3px var(--light-gray);
+}
+
+.location span {
+  font-style: italic;
+  font-weight: 600;
+}

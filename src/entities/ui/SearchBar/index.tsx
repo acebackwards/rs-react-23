@@ -5,10 +5,15 @@ import style from './style.module.css';
 
 interface Props {
   storedData: string;
+  startSearch(s: string): void;
 }
 
 export function SearchBar(props: Props) {
   const [inputValue, setInputValue] = useState('');
+
+  const handleClick = () => {
+    props.startSearch(inputValue);
+  };
 
   const inputChange = (e: { target: { value: string } }) => {
     setInputValue(e.target.value);
@@ -34,7 +39,9 @@ export function SearchBar(props: Props) {
   return (
     <div className={style.search}>
       <Input placeholder="Search..." defaultValue={inputValue} onChange={inputChange} />
-      <Button title="Search" />
+      <div onClick={handleClick}>
+        <Button title="Search" />
+      </div>
     </div>
   );
 }

@@ -62,9 +62,10 @@ export function CardContainer(props: Props) {
   };
 
   useEffect(() => {
+    setCardList([]);
     getAllCards();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.searchName]);
 
   if (!isLoaded) {
     return <div>It`s loading...</div>;

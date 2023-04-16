@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import s from './style.module.css';
+import { ICard } from 'app/models/ICard';
 
 type CardProps = {
-  name: string;
-  status: string;
-  species: string;
-  img: string;
-  location: string;
+  item: ICard;
 };
 
-export const Card = (props: CardProps) => {
+export const Card: FC<CardProps> = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -19,18 +16,18 @@ export const Card = (props: CardProps) => {
           <div className={s['modal__background']} onClick={() => setShowModal(false)} />
           <div className={s['modal__card']}>
             <div className={s['image-container']}>
-              <img src={props.img} alt="" />
+              <img src={item.image} alt="" />
             </div>
             <div className={s['description-container']}>
               <div>
-                <h3>{props.name}</h3>
+                <h3>{item.name}</h3>
               </div>
               <div className={s.description}>
-                <div className={s.type}>{props.species}</div>
-                <div className={s.status}>{props.status}</div>
+                <div className={s.type}>{item.species}</div>
+                <div className={s.status}>{item.status}</div>
               </div>
               <div className={s.location}>
-                <span>Location:</span> {props.location}
+                <span>Location:</span> {item.location.name}
               </div>
             </div>
           </div>
@@ -38,11 +35,11 @@ export const Card = (props: CardProps) => {
       )}
       <div className={s.card} onClick={() => setShowModal(true)}>
         <div className={s['image-container']}>
-          <img src={props.img} alt="" />
+          <img src={item.image} alt="" />
         </div>
         <div className={s['description-container']}>
           <div className={s['card__name']}>
-            <h3>{props.name}</h3>
+            <h3>{item.name}</h3>
           </div>
         </div>
       </div>

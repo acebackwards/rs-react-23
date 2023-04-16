@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input, Button } from '../../../shared/ui';
 
 import style from './style.module.css';
@@ -18,25 +18,6 @@ export function SearchBar(props: Props) {
 
   const inputChange = (e: { target: { value: string } }) => {
     setInputValue(e.target.value);
-  };
-
-  useEffect(() => {
-    const storedData = localStorage.getItem(props.storedData);
-    if (storedData) {
-      setInputValue(storedData);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem(props.storedData, inputValue);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue]);
-
-  window.onunload = () => {
-    localStorage.setItem(props.storedData, inputValue);
   };
 
   return (

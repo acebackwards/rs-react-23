@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { SearchBar } from '../../entities/ui';
 import { CardContainer } from '../../widgets';
+import { useAppSelector } from '../../app/hooks/redux';
+import { searchSlice } from '../../app/store/reducers/CardSlice';
 
 export const MainPage = () => {
+  const { searchValue } = useAppSelector((state) => state.searchReducer);
+
   const [inputValue, setInputValue] = useState('');
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
-    const storedData = localStorage.getItem('search');
-    if (storedData) {
-      setInputValue(storedData);
-    }
+    setInputValue(searchValue);
     setPending(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('search', inputValue);
-    };
-  });
-
-  window.onunload = () => {
-    localStorage.setItem('search', '');
-  };
-
   const startSearch = (search: string) => {
+    searchSlice.actions.newSearchValue(inputValue);
     setInputValue(search);
-    localStorage.setItem('search', search);
   };
 
   const showCards = () => {

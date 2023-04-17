@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { cardApi } from '../services/CardService';
 import searchReducer from './reducers/CardSlice';
+import formReducer from './reducers/FormSlice';
 
 const rootReducer = combineReducers({
   searchReducer,
+  formReducer,
   [cardApi.reducerPath]: cardApi.reducer,
 });
 

@@ -1,16 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './style.module.css';
+import { IFormCard } from 'app/models/IFormCard';
 
-type FormCardProps = {
-  title: string;
-  type: string;
-  date: string;
-  img: string;
-  author: boolean;
-  gender: string;
-};
-
-export const FormCard = (props: FormCardProps) => {
+export const FormCard: FC<IFormCard> = (props) => {
   const recognizeType = () => {
     switch (props.type) {
       case '1':
@@ -27,7 +19,7 @@ export const FormCard = (props: FormCardProps) => {
   return (
     <div className={s.card}>
       <div className={s['image-container']}>
-        <img src={props.img} alt="" />
+        <img src={props.image} alt="" />
       </div>
       <div className={s['description-container']}>
         <div>
@@ -38,7 +30,7 @@ export const FormCard = (props: FormCardProps) => {
           <div className={s.date}>{props.date}</div>
         </div>
         <div className={s.author}>
-          <span>Is developer:</span> {props.author ? 'Yes' : 'No'}
+          <span>Is developer:</span> {props.developer ? 'Yes' : 'No'}
         </div>
         <div className={s.author}>Created by {props.gender}</div>
       </div>

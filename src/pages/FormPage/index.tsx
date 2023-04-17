@@ -1,35 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './style.module.css';
 import { Button } from '../../shared/ui';
 import { FormCard } from '../../entities/ui';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-type ItemType = {
-  title: string;
-  date: string;
-  type: string;
-  developer: boolean;
-  gender: string;
-  file: string;
-};
-
-interface IForm {
-  title: string;
-  date: string;
-  type: string;
-  developer: boolean;
-  gender: string;
-  file: FileList;
-}
-
-interface IFormCard {
-  title: string;
-  date: string;
-  type: string;
-  developer: boolean;
-  gender: string;
-  file: string;
-}
+import { useAppDispatch, useAppSelector } from '../../app/hooks/redux';
+import { IForm, IFormCard } from '../../app/models/IFormCard';
+import { addFormCard } from '../../app/store/reducers/FormSlice';
 
 export const FormPage = () => {
   const {
@@ -38,8 +14,8 @@ export const FormPage = () => {
     reset,
     formState: { errors },
   } = useForm<IForm>();
-
-  const [formList, setFormList] = useState<ItemType[]>([]);
+  const { formCardList } = useAppSelector((state) => state.formReducer);
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<IForm> = ({
     title,
@@ -55,10 +31,10 @@ export const FormPage = () => {
       type,
       developer,
       gender,
-      file: window.URL.createObjectURL(file[0]),
+      image: window.URL.createObjectURL(file[0]),
     };
 
-    setFormList([...formList, newFormCard]);
+    dispatch(addFormCard(newFormCard));
 
     reset();
   };
@@ -134,7 +110,7 @@ export const FormPage = () => {
       </div>
 
       <div className={s.cardContainer}>
-        {formList.map((item, index) => {
+        {formCardList.map((item, index) => {
           return (
             <FormCard
               key={index}
@@ -142,8 +118,8 @@ export const FormPage = () => {
               date={item.date}
               type={item.type}
               gender={item.gender}
-              img={item.file}
-              author={item.developer}
+              image={item.image}
+              developer={item.developer}
             />
           );
         })}

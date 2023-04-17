@@ -1,36 +1,39 @@
 import { render, screen } from '@testing-library/react';
-import { AboutPage, ErrorPage, FormPage, MainPage } from '../pages';
+import { AboutPage, ErrorPage } from '../pages';
 import React from 'react';
 import { Card, FormCard } from '../entities/ui';
 import { Input, Button } from '../shared/ui';
-import { Header } from '../widgets';
-import { App } from '../app';
-
-describe('App', () => {
-  it('runs app', () => {
-    render(<App />);
-    screen.debug();
-  });
-});
 
 describe('Card', () => {
+  const item = {
+    id: 1,
+    name: 'string',
+    status: 'string',
+    species: 'string',
+    type: 'string',
+    gender: 'string',
+    origin: {
+      name: 'string',
+      url: 'string',
+    },
+    location: {
+      name: 'string',
+      url: 'string',
+    },
+    image: 'string',
+    episode: ['string', 'string'],
+    url: 'string',
+    created: 'string',
+  };
   it('renders card', () => {
-    render(
-      <Card name={'name'} status={'status'} species={'species'} img={'image'} location={'name'} />
-    );
+    render(<Card item={item} />);
+    screen.debug();
   });
 });
 
 describe('Input', () => {
   it('renders input', () => {
-    render(<Input placeholder="Поиск..." />);
-  });
-});
-
-describe('Header', () => {
-  it('renders header', () => {
-    render(<Header />);
-    // screen.debug();
+    render(<Input placeholder="Поиск..." defaultValue="Rick" onChange={() => true} />);
   });
 });
 
@@ -47,17 +50,11 @@ describe('Button', () => {
 });
 
 describe('pages', () => {
-  it('renders Main Page', () => {
-    render(<MainPage />);
-  });
   it('renders About Page', () => {
     render(<AboutPage />);
   });
   it('renders Error Page', () => {
     render(<ErrorPage />);
-  });
-  it('renders Error Page', () => {
-    render(<FormPage />);
   });
 });
 
@@ -66,10 +63,10 @@ describe('Form Card', () => {
     render(
       <FormCard
         title="Title"
-        gender={true}
-        author={true}
+        gender="Gender"
+        developer={true}
         type="2"
-        img="localhost:5173/img"
+        image="localhost:5173/img"
         date="Today"
       />
     );

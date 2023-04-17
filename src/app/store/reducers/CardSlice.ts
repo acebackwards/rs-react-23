@@ -19,4 +19,6 @@ export const searchSlice = createSlice({
   extraReducers: {},
 });
 
+export const { newSearchValue } = searchSlice.actions;
+
 export default searchSlice.reducer;

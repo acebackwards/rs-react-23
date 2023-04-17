@@ -17,14 +17,18 @@ export const CardContainer: FC<CardContainer> = ({ searchName }) => {
   } else {
     return (
       <>
-        <h3>Card amount: {cards && cards.info.count}</h3>
-        {error && <h3>Ошибка...</h3>}
-        <div className={style.container}>
-          {cards &&
-            cards.results.map((item: ICard) => {
-              return <Card key={item.id} item={item} />;
-            })}
-        </div>
+        {/* TODO: if you want show card amount then uncomment below */}
+        {/* <h3>Card amount: {cards && cards.info.count}</h3> */}
+        {error ? (
+          <h3>Nothing was found...</h3>
+        ) : (
+          <div className={style.container}>
+            {cards &&
+              cards.results.map((item: ICard) => {
+                return <Card key={item.id} item={item} />;
+              })}
+          </div>
+        )}
       </>
     );
   }

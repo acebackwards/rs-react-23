@@ -5,6 +5,7 @@ import style from './style.module.css';
 
 interface Props {
   storedData: string;
+  defaultValue: string;
   startSearch(s: string): void;
 }
 
@@ -25,7 +26,7 @@ export function SearchBar(props: Props) {
       <Input
         id="search-input"
         placeholder="Search..."
-        defaultValue={inputValue}
+        defaultValue={props.defaultValue}
         onChange={inputChange}
       />
       <div>
